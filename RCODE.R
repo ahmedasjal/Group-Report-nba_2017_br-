@@ -58,3 +58,11 @@ hist_bell <- nba_clean %>%
 
 print(hist_bell)
 
+
+#  Correlation Tests (Spearman)
+
+spearman_result <- cor.test(nba_clean$PSG, nba_clean$MP, method = "spearman")
+spearman_result
+
+# Code End
+
