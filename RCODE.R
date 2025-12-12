@@ -29,3 +29,32 @@ scatter_plot <- nba_clean %>%
   theme_minimal()
 
 print(scatter_plot)
+
+#  Histogram of MP with Bell Curve Overlay
+
+mp_mean <- mean(nba_clean$MP)
+mp_sd   <- sd(nba_clean$MP)
+
+hist_bell <- nba_clean %>%
+  ggplot(aes(x = MP)) +
+  geom_histogram(
+    aes(y = ..density..),
+    binwidth = 2,
+    fill = "lightblue",
+    colour = "black"
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = mp_mean, sd = mp_sd),
+    colour = "red",
+    linewidth = 1
+  ) +
+  labs(
+    title = "Histogram of Minutes Played (MP) (Bell Curve)",
+    x = "Minutes per Game (MP)",
+    y = "Density"
+  ) +
+  theme_minimal()
+
+print(hist_bell)
+
